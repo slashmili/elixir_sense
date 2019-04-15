@@ -57,7 +57,7 @@ defmodule ElixirSense.DocsTest do
 
 
 
-      ____
+      ---
 
       > List.flatten(list, tail)
 
@@ -109,7 +109,7 @@ defmodule ElixirSense.DocsTest do
 
 
 
-      ____
+      ---
 
       > List.flatten(list, tail)
 
@@ -232,7 +232,7 @@ defmodule ElixirSense.DocsTest do
 
 
 
-      ____
+      ---
 
         `@type server ::
         pid |
@@ -300,26 +300,20 @@ defmodule ElixirSense.DocsTest do
       assert subject == "Remote.remote_t"
       assert actual_subject == "ElixirSenseExample.ModuleWithTypespecs.Remote.remote_t"
       assert docs == """
-      __*remote_t()*__
-
       Remote type
 
       ```
-      @type remote_t :: atom
-
+      @type remote_t() :: atom()
       ```
 
-      ____
-
-      __*remote_t(a, b)*__
+      ---
 
       Remote type with params
 
       ```
       @type remote_t(a, b) :: {a, b}
-
-      ```
-      """ |> String.trim()
+      ```\
+      """
     end
 
     test "retrieve builtin type documentation" do
@@ -339,26 +333,24 @@ defmodule ElixirSense.DocsTest do
       assert subject == "keyword"
       assert actual_subject == "keyword"
       assert docs == """
-      __*keyword*__
-
       A keyword list
 
       ```
-      @type keyword :: [{atom, any}]
-
+      @type keyword :: [{atom(), any()}]
       ```
 
-      ____
-
-      __*keyword(t)*__
+      ---
 
       A keyword list with values of type `t`
 
       ```
-      @type keyword(t) :: [{atom, t}]
-
+      @type keyword(t) :: [{atom(), t}]
       ```
-      """ |> String.trim()
+
+      ---
+
+      \\<sub\\>\\<sup\\>_* Built-in type_\\</sup\\>\\</sub\\>\
+      """
     end
 
     test "retrieve basic type documentation" do
@@ -378,10 +370,16 @@ defmodule ElixirSense.DocsTest do
       assert subject == "integer"
       assert actual_subject == "integer"
       assert docs == """
-      __*integer()*__
-
       An integer number
-      """ |> String.trim()
+
+      ```
+      integer()
+      ```
+
+      ---
+
+      \\<sub\\>\\<sup\\>_* Built-in type_\\</sup\\>\\</sub\\>\
+      """
     end
 
     test "retrieve basic and builtin type documentation" do
@@ -401,21 +399,24 @@ defmodule ElixirSense.DocsTest do
       assert subject == "list"
       assert actual_subject == "list"
       assert docs == """
-      __*list*__
-
       A list
 
       ```
-      @type list :: [any]
-
+      @type list :: [any()]
       ```
 
-      ____
-
-      __*list(t)*__
+      ---
 
       Proper list ([]-terminated)
-      """ |> String.trim()
+
+      ```
+      list(t)
+      ```
+
+      ---
+
+      \\<sub\\>\\<sup\\>_* Built-in type_\\</sup\\>\\</sub\\>\
+      """
     end
 
   end
