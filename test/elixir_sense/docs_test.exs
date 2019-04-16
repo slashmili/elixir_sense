@@ -336,7 +336,7 @@ defmodule ElixirSense.DocsTest do
       A keyword list
 
       ```
-      @type keyword :: [{atom(), any()}]
+      @type keyword() :: [{atom(), any()}]
       ```
 
       ---
@@ -402,7 +402,7 @@ defmodule ElixirSense.DocsTest do
       A list
 
       ```
-      @type list :: [any()]
+      @type list() :: [any()]
       ```
 
       ---
